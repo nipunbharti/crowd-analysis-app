@@ -61,6 +61,7 @@ class FaceCount extends Component {
 								})} 
 							/>
 						}
+						style={{paddingTop: 20}}
 					/>
 				</View>
 			</View>

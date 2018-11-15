@@ -8,12 +8,12 @@ class Chart extends Component {
 		return (
 			<View style={styles.test}>
 				 <Text>Hello</Text>
-				 {/*<LineChart
-	    //             style={{ height: 200,width:200,backgroundColor:'red',borderWidth:2}}
-	    //             data={ data }
-	    //             svg={{ stroke: 'rgb(134, 65, 244)' }}
-	    //             contentInset={{ top: 20, bottom: 20 }}
-	    //         >
+			{/*	 <LineChart
+	                 style={{ height: 200,width:200,backgroundColor:'red',borderWidth:2}}
+	                 data={ data }
+	                 svg={{ stroke: 'rgb(134, 65, 244)' }}
+	                 contentInset={{ top: 20, bottom: 20 }}
+	             >
                 <Grid/>
             </LineChart>*/}
 			</View>
