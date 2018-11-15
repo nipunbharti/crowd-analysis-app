@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { Icon } from 'react-native-elements'
+import { View, Text, StyleSheet, FlatList } from 'react-native';
+import { Icon, Button } from 'react-native-elements'
 
 class FaceCount extends Component {
 
@@ -9,6 +9,7 @@ class FaceCount extends Component {
 
 		this.state = {
 			currentCount: null,
+			metricCollection: []
 		}
 	}
 
@@ -18,18 +19,27 @@ class FaceCount extends Component {
 
 	refreshCount = () => {
 		fetch('http://localhost:8000/face_count')
-			.then(res => res.json())
-			.then(resJson => {
-				console.log(resJson);
-				let latestDate = resJson.filter(obj => obj.image_name).reduce(function (a, b) { return a > b ? a : b; });
+			.then(res1 => res1.json())
+			.then(res1Json => {
+				let latestDate = res1Json.filter(obj => obj.image_name).reduce(function (a, b) { return a > b ? a : b; });
 				this.setState({
 					currentCount: latestDate.face_count
 				});
+				fetch('http://localhost:8000/face_metrics')
+					.then(res2 => res2.json())
+					.then(res2Json => {
+						let setOfPeople = res2Json.filter(peep => peep.image_name == latestDate.image_name);
+						this.setState({
+							metricCollection: setOfPeople	
+						});
+						console.log(setOfPeople);
+					})
 			})
 			.catch(err => console.log(err));
 	}
 
 	render() {
+		const { navigation } = this.props;
 		return (
 			<View style={styles.main}>
 				<View style={styles.refreshView}>
@@ -40,6 +50,18 @@ class FaceCount extends Component {
 					<Text style={{fontSize: 60, fontWeight: 'bold'}}>{this.state.currentCount}</Text>
 				</View>
 				<View style={styles.flatListContainer}>
+					<FlatList
+						data={this.state.metricCollection}
+						renderItem={({item, index}) => 
+							<Button 
+								title={'Face '.concat(index+1)} 
+								buttonStyle={styles.buttonColor} 
+								onPress={() => this.props.navigation.navigate('MetricScreen', {
+									metrics: item
+								})} 
+							/>
+						}
+					/>
 				</View>
 			</View>
 		);
@@ -52,8 +74,8 @@ const styles = StyleSheet.create({
 	},
 	refreshView: {
 		flex: 0.1,
-		paddingTop: 45,
-		paddingRight: 30,
+		
+		paddingRight: 20,
 		alignItems: 'flex-end',
 	},
 	countView: {
@@ -64,6 +86,9 @@ const styles = StyleSheet.create({
 	},
 	flatListContainer: {
 		flex: 1,
+	},
+	buttonColor: {
+		backgroundColor: '#6058d8'
 	}
 });
 

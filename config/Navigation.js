@@ -1,12 +1,12 @@
 import React from 'react';
 import { TabNavigator } from 'react-navigation';
-import FaceCount from  '../components/FaceCount';
+import FaceCountStackComp from './FaceCountStack';
 import FaceRecognition from  '../components/FaceRecognition';
 import Chart from  '../components/Chart';
 
 export const Tab = TabNavigator({
 	FaceCount: {
-		screen: FaceCount,
+		screen: FaceCountStackComp,
 	},
 	Chart: {
 		screen: Chart,
