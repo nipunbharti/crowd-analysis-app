@@ -18,14 +18,14 @@ class FaceCount extends Component {
 	}
 
 	refreshCount = () => {
-		fetch('http://localhost:8000/face_count')
+		fetch('https://cromdev-server.herokuapp.com/face_count')
 			.then(res1 => res1.json())
 			.then(res1Json => {
 				let latestDate = res1Json.filter(obj => obj.image_name).reduce(function (a, b) { return a > b ? a : b; });
 				this.setState({
 					currentCount: latestDate.face_count
 				});
-				fetch('http://localhost:8000/face_metrics')
+				fetch('https://cromdev-server.herokuapp.com/face_metrics')
 					.then(res2 => res2.json())
 					.then(res2Json => {
 						let setOfPeople = res2Json.filter(peep => peep.image_name == latestDate.image_name);
@@ -75,7 +75,6 @@ const styles = StyleSheet.create({
 	},
 	refreshView: {
 		flex: 0.1,
-		
 		paddingRight: 20,
 		alignItems: 'flex-end',
 	},
