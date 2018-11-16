@@ -88,7 +88,8 @@ const styles = StyleSheet.create({
 		flex: 1,
 	},
 	buttonColor: {
-		backgroundColor: '#6058d8'
+		backgroundColor: '#6058d8',
+		marginTop: 20
 	}
 });
 
