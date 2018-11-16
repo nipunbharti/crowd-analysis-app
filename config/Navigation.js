@@ -2,6 +2,7 @@ import React from 'react';
 import { TabNavigator } from 'react-navigation';
 import FaceCountStackComp from './FaceCountStack';
 import FaceRecognition from  '../components/FaceRecognition';
+import MastHead from  '../components/MastHead';
 import Chart from  '../components/Chart';
 
 export const Tab = TabNavigator({
@@ -13,6 +14,9 @@ export const Tab = TabNavigator({
 	},
 	FaceRecognition: {
 		screen: FaceRecognition,
+	},
+	MastHead: {
+		screen: MastHead,
 	},
 }, {
 	tabBarPosition: 'bottom',

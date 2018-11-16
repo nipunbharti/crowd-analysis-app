@@ -32,7 +32,6 @@ class FaceCount extends Component {
 						this.setState({
 							metricCollection: setOfPeople	
 						});
-						console.log(setOfPeople);
 					})
 			})
 			.catch(err => console.log(err));
