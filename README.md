@@ -1,4 +1,4 @@
-## React Native app for a crowd analysis using AWS
+## React Native app for crowd analysis using AWS
 
 ### Features working currently
 
